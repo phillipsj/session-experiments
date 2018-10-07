@@ -15,14 +15,14 @@ locals {
 
 # Create a resource group
 resource "azurerm_resource_group" "myApp" {
-  name     = "MyApp-Demo-RG"
+  name     = "MyApp-Dev-RG"
   location = "${var.region}"
 
   tags = "${local.tags}"
 }
 
 resource "azurerm_app_service_plan" "myApp" {
-  name                = "MyApp-Demo-AP"
+  name                = "MyApp-Dev-AP"
   location            = "${azurerm_resource_group.myApp.location}"
   resource_group_name = "${azurerm_resource_group.myApp.name}"
 
@@ -35,7 +35,7 @@ resource "azurerm_app_service_plan" "myApp" {
 }
 
 resource "azurerm_app_service" "myApp" {
-  name                = "MyApp-Demo-AS"
+  name                = "MyApp-Dev-AP"
   location            = "${azurerm_resource_group.myApp.location}"
   resource_group_name = "${azurerm_resource_group.myApp.name}"
   app_service_plan_id = "${azurerm_app_service_plan.myApp.id}"
