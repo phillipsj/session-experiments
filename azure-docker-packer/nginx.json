@@ -1,0 +1,29 @@
+{
+    "builders": [
+        {
+            "type": "docker",
+            "image": "ubuntu:18.04",
+            "commit": true
+        }
+    ],
+  
+    "provisioners": [{
+        "type": "shell",
+        "except": ["docker"],
+        "script": [
+            "sudo apt-get update",
+            "sudo apt-get upgrade --yes",
+            "sudo apt-get install nginx --yes"
+        ]        
+      },
+      {
+        "type": "shell",
+        "only": ["docker"],
+        "inline": [
+            "apt-get update",
+            "apt-get upgrade --yes",
+            "apt-get install nginx --yes"
+        ]
+      }
+    ]
+  }
