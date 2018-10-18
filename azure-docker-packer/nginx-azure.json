@@ -7,7 +7,7 @@
             "subscription_id": "44cae533-4247-4093-42cf-897ded6e7823",
             "tenant_id": "de39842a-caba-497e-a798-7896aea43218",
         
-            "managed_image_name ": "Nginx ${TIMESTAMP}",
+            "managed_image_name": "nginx-{{isotime | clean_image_name}}",
             "managed_image_resource_group_name": "Images",
         
             "os_type": "Linux",
@@ -23,13 +23,13 @@
             },
         
             "location": "East US",
-            "vm_size": ""
+            "vm_size": "Standard_B1s"
         }
     ],
   
     "provisioners": [{
         "type": "shell",
-        "script": [
+        "inline": [
             "sudo apt-get update",
             "sudo apt-get upgrade --yes",
             "sudo apt-get install nginx --yes"
